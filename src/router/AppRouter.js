@@ -7,8 +7,10 @@ import {
 } from "react-router-dom";
 import EnrollmentPage from '../pages/enrollmentPage';
 import QuestionPage   from '../pages/questionPage'
+import { useSelector } from 'react-redux'
 export default function App() {
-  const [name,setName] = React.useState()  
+
+  const name = useSelector(state=>state.name.name)
   const SafeQuestionRoute=(props)=>{
      return name?<QuestionPage/>:<Redirect to="/"/>;
   }  
@@ -20,7 +22,7 @@ export default function App() {
             <SafeQuestionRoute name={name}/>
           </Route>
           <Route path="/">
-            <EnrollmentPage setName={setName}/>
+            <EnrollmentPage />
           </Route>
          
          

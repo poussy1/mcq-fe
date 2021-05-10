@@ -1,8 +1,11 @@
-import React,{useState} from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
+import styled from "styled-components";
+
+
 import Question from '../widgets/question.js'
 import Grade from '../widgets/grade.js'
-import styled from "styled-components";
-import { shuffleArray } from '../helper/helper'
+
 const Container =styled.div`
     display: flex;
     justify-content: center; 
@@ -10,29 +13,13 @@ const Container =styled.div`
     height: 60vh;
 `
 
-const questionsInitalValue = [{
-      questionText:"what's your name?",
-      questionAnswers:shuffleArray(["answer1",'answer2','answer3']),
-    },{
-      questionText:"what's your weight?",
-      questionAnswers:shuffleArray(["answer1",'answer2','answer3']),
-    },{
-      questionText:"what's your height?",
-      questionAnswers:shuffleArray(["answer1",'answer2','answer3']),
-    }
-]
+
 export default function QuestionPage(){
-  
-   const [questions,setQuestions]=useState(shuffleArray(questionsInitalValue))
-   const [shownQuestionId,setShownQuestionId] = useState(0);
+  const shownQuestionId = useSelector(state=>state.shownQuestionId.shownQuestionId)
    return(<>
       <Container> 
         { 
-          shownQuestionId==3?<Grade/>:
-            <Question 
-              questionDetails={questions[shownQuestionId]} 
-              setShownQuestionId={setShownQuestionId}
-            />
+          shownQuestionId==5?<Grade/>:<Question/>
         }
       </Container>
      </>

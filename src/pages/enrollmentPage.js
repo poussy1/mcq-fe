@@ -7,15 +7,18 @@ import Button from '@material-ui/core/Button';
 
 import { useHistory } from 'react-router-dom';
 import styled from "styled-components";
+import { useDispatch } from 'react-redux'
+import { setName } from '../store/nameSlice'
+
 const EnrollmentContainer =styled.div`
     display: flex;
     flex-direction:column;
-   
     justify-content: center; 
     align-items: center; 
     height: 60vh;
 `
-export default function QuestionPage({setName}){
+export default function EnrollementPage(){
+   const dispatch = useDispatch()  
    let history = useHistory();
    function handleButtonClick(){
       history.push('/questions')
@@ -26,7 +29,7 @@ export default function QuestionPage({setName}){
                 <TextField 
                  required 
                  onChange={(e)=>{
-                    setName(e.target.value)
+                    dispatch(setName(e.target.value))
                  }} 
                  id="standard-basic" 
                  label="Full Name" 
