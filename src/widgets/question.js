@@ -34,7 +34,7 @@ export default function Question(){
     const dispatch = useDispatch() 
     const shownQuestionId = useSelector(state=>state.shownQuestionId.shownQuestionId)
     const questionDetails = useSelector(state=>state.questions.questions[shownQuestionId])
-   
+  
     const resetCheckBoxes = () =>{
         setChecked({
             checked1:false,
@@ -63,12 +63,13 @@ export default function Question(){
         setChecked({ ...checked, [event.target.name]: event.target.checked });
     };
     return (
+    <>
         <CardContainer>
             <Card>
                 <CardContainerPadding>
                     <CardContent>
                         <Typography style={{textAlign:'left'}} variant="h5" component="h2">
-                            {questionDetails.questionText}
+                           Q({shownQuestionId+1}):{questionDetails.questionText}
                         </Typography>
                         <FormGroup >
                             <FormControlLabel
@@ -97,11 +98,12 @@ export default function Question(){
                             />
                         </FormGroup> 
                     </CardContent>
-                    <CardActions  style={{justifyContent: 'flex-end'}}>
+                    <CardActions  style={{justifyContent: 'space-around'}}>
                         <Button  onClick={()=>handleButtonClick()} size="small">Submit</Button>
                     </CardActions> 
                 </CardContainerPadding>
             </Card>
         </CardContainer>
+    </>
     )
 }
