@@ -43,10 +43,21 @@ export default function Question(){
             checked4:false
         })
     }
+    const updateScore=()=>{
+        var correctAnswerId = Math.floor(Math.random() * (4))
+        var checkedStateArray = Object.entries(checked)
+        var selectedAnswerIndex = checkedStateArray.findIndex(function(selectedAnswer, index) {
+            if(selectedAnswer[1] == true)
+                return true;
+        })
+        if(selectedAnswerIndex == correctAnswerId){
+            dispatch(incrementScore(1))
+        }
+    }
     const handleButtonClick = () =>{ 
         resetCheckBoxes()
         dispatch(incrementShownQuestionId())
-        dispatch(incrementScore(1))
+        updateScore()
     }
     const handleChange = (event) => {
         setChecked({ ...checked, [event.target.name]: event.target.checked });

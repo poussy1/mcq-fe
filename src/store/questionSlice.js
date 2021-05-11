@@ -17,15 +17,20 @@ const questionsInitalValue = [{
     questionAnswers:shuffleArray(["answer1",'answer2','answer3','answer4']),
   }
 ]
-
+const buildQuestions=(randomFiveQuestionsArray)=>{
+  return randomFiveQuestionsArray.map(q=>{return{
+    questionText:q,
+    questionAnswers:shuffleArray(["answer1",'answer2','answer3','answer4'])
+  }})
+}
 export const questionsSlice = createSlice({
   name: 'questions',
   initialState:{
     questions:shuffleArray(questionsInitalValue)
   },
   reducers: {
-    setQuestions: (state,{payload}) => {
-      state.questions = payload
+    setQuestions: (state,{payload}) => { 
+      state.questions = buildQuestions(payload)
     }
   }
 })
